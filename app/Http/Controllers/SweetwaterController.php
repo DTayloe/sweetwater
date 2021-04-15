@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sweetwater;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class SweetwaterController extends Controller
 {
@@ -20,7 +22,7 @@ class SweetwaterController extends Controller
         
         $candy = $this->filterSearch($comments, "candy");
         $call = $this->filterSearch($comments, "call");
-        $referred = $this->filterSearch($comments, "refer");
+        $referred = $this->filterSearch($comments, "referred");
         $signature = $this->filterSearch($comments, "signature");
         $misc = array_diff_key($comments, $this->removeFromCollection);
 
@@ -49,14 +51,17 @@ class SweetwaterController extends Controller
 
     public function parseDates(){
         $entireTable = Sweetwater::all();
+        $sweetwaterModel = new Sweetwater();
 
-        for ($i=0; $i < count($entireTable); $i++) { 
+        for ($i=0; $i < count($entireTable); $i++) {
             $matches = array();
-            preg_match('/[0-9]*[0-9][\/-][0-9]*[0-9][\/-][0-9]*[0-9]/',$entireTable[$i]['comments'], $matches);
+            preg_match('/[0-9]*[0-9][\/-][0-9]*[0-9][\/-][0-9]*[0-9]/', $entireTable[$i]['comments'], $matches);
             Log::info(json_encode($entireTable[$i]['comments']));
             
             if(count($matches) > 0){
-                Log::info("\tFOUND (" . count($matches) ."):" . $matches[0]);
+                $formattedDate = (new DateTime($matches[0]))->format('Y-m-d H:i:s');
+                Log::info("\tFOUND (" . count($matches) ."):" . $formattedDate);
+                DB::table('sweetwater_test')->where('orderid', $entireTable[$i]['orderid'])->update(array('shipdate_expected' => $formattedDate));
             }else{
                 Log::info("\tFOUND (0)");
             }

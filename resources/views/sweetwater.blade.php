@@ -9,7 +9,7 @@
 <body>
     <form action="/parseDates" method="post">
         {{ csrf_field() }}
-        <button type="submit">Parse Dates</button>
+        <button type="submit">Populate expected shipdates</button>
     </form>
 
     <h2>Comments about candy ({{count($candy)}})</h2>
