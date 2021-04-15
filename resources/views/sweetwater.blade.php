@@ -14,17 +14,33 @@
         </ul>
     @endforeach
 
-    <h2>Comments about call me / don't call me</h2>
-    {{-- {{$call}} --}}
+    <h2>Comments about call me / don't call me ({{count($call)}})</h2>
+    @foreach ($call as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
 
-    <h2>Comments about who referred me</h2>
-    {{-- {{$referred}} --}}
+    <h2>Comments about who referred me ({{count($referred)}})</h2>
+    @foreach ($referred as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
 
-    <h2>Comments about signature requirements upon delivery</h2>
-    {{-- {{$signature}} --}}
+    <h2>Comments about signature requirements upon delivery ({{count($signature)}})</h2>
+    @foreach ($signature as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
 
-    <h2>Miscellaneous comments (everything else)</h2>
-    {{-- {{$misc}} --}}
+    <h2>Miscellaneous comments (everything else) ({{count($misc)}})</h2>
+    @foreach ($misc as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
     
     <h2>Remove these ({{count($remove)}})</h2>
     @foreach ($remove as $item)
