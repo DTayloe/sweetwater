@@ -7,15 +7,12 @@
     <title>Comment Test</title>
 </head>
 <body>
-    <h2>Comments about candy</h2>
+    <h2>Comments about candy ({{count($candy)}})</h2>
     @foreach ($candy as $item)
         <ul>
             <li>{{$item}}</li>
         </ul>
     @endforeach
-
-    <h3>Count:</h3>
-    {{count($candy)}}
 
     <h2>Comments about call me / don't call me</h2>
     {{-- {{$call}} --}}
@@ -29,7 +26,14 @@
     <h2>Miscellaneous comments (everything else)</h2>
     {{-- {{$misc}} --}}
     
-    <h1>EVERYTHING</h1>
+    <h2>Remove these ({{count($remove)}})</h2>
+    @foreach ($remove as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
+
+    <h1>EVERYTHING ({{count($all)}})</h1>
     @foreach ($all as $item)
         <ul>
             <li>{{$item}}</li>
