@@ -15,3 +15,4 @@ use App\Http\Controllers\SweetwaterController;
 */
 
 Route::get('/', [SweetwaterController::class, 'index']);
+Route::post('/parseDates', [SweetwaterController::class, 'parseDates']);

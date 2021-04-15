@@ -46,4 +46,22 @@ class SweetwaterController extends Controller
             }
         }, ARRAY_FILTER_USE_BOTH);
     }
+
+    public function parseDates(){
+        $entireTable = Sweetwater::all();
+
+        for ($i=0; $i < count($entireTable); $i++) { 
+            $matches = array();
+            preg_match('/[0-9]*[0-9][\/-][0-9]*[0-9][\/-][0-9]*[0-9]/',$entireTable[$i]['comments'], $matches);
+            Log::info(json_encode($entireTable[$i]['comments']));
+            
+            if(count($matches) > 0){
+                Log::info("\tFOUND (" . count($matches) ."):" . $matches[0]);
+            }else{
+                Log::info("\tFOUND (0)");
+            }
+        }
+
+        return redirect('/');
+    }
 }

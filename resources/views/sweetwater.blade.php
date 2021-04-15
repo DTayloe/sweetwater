@@ -7,6 +7,11 @@
     <title>Comment Test</title>
 </head>
 <body>
+    <form action="/parseDates" method="post">
+        {{ csrf_field() }}
+        <button type="submit">Parse Dates</button>
+    </form>
+
     <h2>Comments about candy ({{count($candy)}})</h2>
     @foreach ($candy as $item)
         <ul>
