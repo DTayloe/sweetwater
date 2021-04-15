@@ -26,9 +26,10 @@ class SweetwaterController extends Controller
         $signature = $this->filterSearch($comments, "signature");
         $misc = array_diff_key($comments, $this->removeFromCollection);
 
+        // reset property in case this same object is used again
+        $this->removeFromCollection = array();
+
         return view('sweetwater', [
-            'all' => $comments,
-            'remove' => $this->removeFromCollection,
             'candy' => $candy,
             'call' => $call,
             'referred' => $referred,

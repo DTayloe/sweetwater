@@ -46,19 +46,5 @@
             <li>{{$item}}</li>
         </ul>
     @endforeach
-    
-    <h2>Remove these ({{count($remove)}})</h2>
-    @foreach ($remove as $item)
-        <ul>
-            <li>{{$item}}</li>
-        </ul>
-    @endforeach
-
-    <h1>EVERYTHING ({{count($all)}})</h1>
-    @foreach ($all as $item)
-        <ul>
-            <li>{{$item}}</li>
-        </ul>
-    @endforeach
 </body>
 </html>
