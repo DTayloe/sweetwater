@@ -8,7 +8,12 @@
 </head>
 <body>
     <h2>Comments about candy</h2>
-    @json($candy)
+    @foreach ($candy as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
+
     <h3>Count:</h3>
     {{count($candy)}}
 
@@ -25,5 +30,10 @@
     {{-- {{$misc}} --}}
     
     <h1>EVERYTHING</h1>
+    @foreach ($all as $item)
+        <ul>
+            <li>{{$item}}</li>
+        </ul>
+    @endforeach
 </body>
 </html>
